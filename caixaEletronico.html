@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        let saldo = 1000;
+        const senha = "3589";
+        let nome = prompt("Qual é o seu nome?");
+        alert("Olá " + nome + ", é um prazer ter você por aqui!");
+
+        function verificacaoDeSenha() {
+        let senha_digitada = prompt("Digite sua senha:");
+        if (senha_digitada !== senha) {
+            alert("Senha incorreta.");
+            inicio();
+        }
+        }
+
+        function inicio() {
+        let opcao = prompt(
+            "Escolha uma opção:\n 1. Saldo\n 2. Extrato\n 3. Saque\n 4. Depósito\n 5. Transferência\n 6. Sair"
+        );
+
+        switch (opcao) {
+            case "1":
+            verificacaoDeSenha();
+            alert("Seu saldo é R$" + saldo);
+            inicio();
+            break;
+
+            case "2":
+            verificacaoDeSenha();
+            extrato();
+            inicio();
+            break;
+
+            case "3":
+            verificacaoDeSenha();
+            let valorSaque = parseInt(prompt("Digite o valor que deseja sacar:"));
+
+            if (valorSaque <= 0 || valorSaque > saldo) {
+                alert("Operação não autorizada");
+            } else {
+                saldo -= valorSaque;
+                alert("Saque de R$" + valorSaque + " realizado com sucesso.");
+            }
+            inicio();
+            break;
+
+            case "4":
+            verificacaoDeSenha();
+            let valorDeposito = parseInt(
+                prompt("Digite o valor que deseja depositar:")
+            );
+
+            if (valorDeposito <= 0) {
+                alert("Operação não autorizada");
+            } else {
+                saldo += valorDeposito;
+                alert("Depósito de R$" + valorDeposito + "realizado com sucesso.");
+            }
+            inicio();
+            break;
+
+            case "5":
+            verificacaoDeSenha();
+            let numConta = prompt("Digite o número da conta:");
+            let valorTransferencia = parseInt(
+                prompt("Digite o valor da transferência:")
+            );
+
+            if (valorTransferencia <= 0 || valorTransferencia > saldo) {
+                alert("Operação não autorizada");
+            } else {
+                saldo -= valorTransferencia;
+                alert("Transferência de R$"+ valorTransferencia + " para a conta " + numConta + " realizada com sucesso.");
+            }
+            inicio();
+            break;
+
+            case "6":
+            let confirma = confirm("Obrigado por utilizar os serviços do banco, " + nome + "!");
+            if (confirma) {
+                window.close();
+            } else {
+                inicio();
+            }
+            break;
+
+            default:
+        }
+        }
+
+        function extrato() {
+        // Exibe algumas operações fictícias
+        let extrato = "Extrato:\n";
+        extrato += "Depósito de R$ 500\n";
+        extrato += "Saque de R$ 200\n";
+        extrato += "Transferência de R$ 100 para a conta 1234\n";
+        extrato += "Saldo atual: R$" + saldo;
+        alert(extrato);
+        }
+
+        function erro() {
+        alert("Opção inválida. Tente novamente.");
+        }
+
+        inicio();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
